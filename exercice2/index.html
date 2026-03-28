@@ -2,85 +2,88 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Ex 01 — Sélecteurs & Spécificité</title>
-  <link rel="stylesheet" href="css/style.css">
+  <title>Ex 02 — Box Model</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <a href="../index.html" class="back">← Retour</a>
-  <h1>01 — Sélecteurs &amp; Spécificité</h1>
+  <h1>02 — Box Model</h1>
 
-  <h2>1.1 HTML de référence</h2>
+  <h2>2.1 — Calculs</h2>
 
-  <nav class="main-nav">
-    <ul>
-      <li><a href="/" class="active">Accueil</a></li>
-      <li><a href="/about">À propos</a></li>
-      <li><a href="/contact">Contact</a></li>
-    </ul>
-  </nav>
-
-  <main>
-    <article class="post featured">
-      <h2>Premier article</h2>
-      <p>Contenu court.</p>
-    </article>
-    <article class="post">
-      <h2>Deuxième article</h2>
-      <p>Contenu plus long pour tester.</p>
-    </article>
-  </main>
-
-  <section class="questions">
-    <h2>Questions &amp; Réponses</h2>
-
+  <div class="questions">
     <div class="qa">
-      <p class="q">1. Tous les liens dans la navigation</p>
-      <pre>.main-nav a { color: green; }</pre>
+      <p class="q">CSS de référence</p>
+      <pre>.box { width: 300px; padding: 20px; border: 5px solid #333; margin: 15px; }</pre>
     </div>
 
     <div class="qa">
-      <p class="q">2. Uniquement le lien actif</p>
-      <pre>.main-nav a.active { font-weight: bold; }</pre>
+      <p class="q">content-box (défaut) → largeur visible ?</p>
+      <p>300 + 20×2 + 5×2 = <strong>350px</strong></p>
     </div>
 
     <div class="qa">
-      <p class="q">3. L'article avec la classe featured</p>
-      <pre>article.post.featured { border: 2px solid green; }</pre>
+      <p class="q">border-box → largeur visible ?</p>
+      <p><strong>300px</strong> (padding + border inclus dans la width)</p>
     </div>
 
     <div class="qa">
-      <p class="q">4. Le premier paragraphe de chaque article</p>
-      <pre>.post p:first-of-type { color: gray; }</pre>
+      <p class="q">Reset universel box-sizing</p>
+      <pre>*, *::before, *::after {
+  box-sizing: border-box;
+}</pre>
+    </div>
+  </div>
+
+  <h2>Démonstration visuelle</h2>
+
+  <div class="demo-row">
+    <div>
+      <p class="label">content-box — largeur totale : 350px</p>
+      <div class="box content-box-demo">contenu 300px</div>
+    </div>
+    <div>
+      <p class="label">border-box — largeur totale : 300px</p>
+      <div class="box border-box-demo">contenu 250px</div>
+    </div>
+  </div>
+
+  <h2>2.2 — Centrer un élément</h2>
+
+  <div class="questions">
+    <div class="qa">
+      <p class="q">Horizontal seulement</p>
+      <pre>.box {
+  width: 600px;
+  margin: 0 auto;
+}</pre>
     </div>
 
     <div class="qa">
-      <p class="q">5. Les éléments li pairs</p>
-      <pre>li:nth-child(even) { background: #f0f0f0; }</pre>
-    </div>
-  </section>
-
-  <section class="questions">
-    <h2>1.2 — Spécificité (croissante)</h2>
-
-    <div class="qa">
-      <pre>p              → (0,0,1)
-.text          → (0,1,0)
-p.text         → (0,1,1)
-#main          → (1,0,0)
-#main .text p  → (1,1,1)</pre>
+      <p class="q">Horizontal + vertical (Flexbox)</p>
+      <pre>body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}</pre>
     </div>
 
     <div class="qa">
-      <p class="q">Même spécificité → laquelle gagne ?</p>
-      <p>La règle déclarée <strong>en dernier</strong> dans le CSS gagne.</p>
+      <p class="q">Horizontal + vertical (Grid)</p>
+      <pre>body {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+}</pre>
     </div>
+  </div>
 
-    <div class="qa">
-      <p class="q">Pourquoi éviter !important ?</p>
-      <p>Il court-circuite la cascade, rend le débogage difficile et force à empiler d'autres <code>!important</code>.</p>
-    </div>
-  </section>
+  <h2>Démo centrage (Flexbox)</h2>
+  <div class="center-demo">
+    <div class="centered-box">Centré !</div>
+  </div>
 
 </body>
 </html>
