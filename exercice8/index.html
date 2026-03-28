@@ -2,85 +2,47 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Ex 01 — Sélecteurs & Spécificité</title>
+  <title>Ex 08 — Quiz</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
   <a href="../index.html" class="back">← Retour</a>
-  <h1>01 — Sélecteurs &amp; Spécificité</h1>
+  <h1>08 — Quiz de révision</h1>
+  <!-- Q1 -->
+  <div class="quiz-item">
+    <p class="q">1. Quel sélecteur a la spécificité la plus haute ?</p>
+      <div class="rep">b) #header a <em>(1,0,1)</em></div>
+  </div>
 
-  <h2>1.1 HTML de référence</h2>
+  <!-- Q2 -->
+  <div class="quiz-item">
+    <p class="q">2. Avec <code>box-sizing: border-box</code>, un élément avec <code>width: 200px</code> et <code>padding: 20px</code> a une largeur totale de :</p>
+      <div class="rep">b) 200px — padding inclus dans la width</div>
+  </div>
 
-  <nav class="main-nav">
-    <ul>
-      <li><a href="/" class="active">Accueil</a></li>
-      <li><a href="/about">À propos</a></li>
-      <li><a href="/contact">Contact</a></li>
-    </ul>
-  </nav>
+  <!-- Q3 -->
+  <div class="quiz-item">
+    <p class="q">3. Pour centrer un élément verticalement ET horizontalement avec Flexbox :</p>
+    
+      <div class="rep">c) justify-content: center ET align-items: center</div>
+    
+  </div>
 
-  <main>
-    <article class="post featured">
-      <h2>Premier article</h2>
-      <p>Contenu court.</p>
-    </article>
-    <article class="post">
-      <h2>Deuxième article</h2>
-      <p>Contenu plus long pour tester.</p>
-    </article>
-  </main>
+  <!-- Q4 -->
+  <div class="quiz-item">
+    <p class="q">4. La valeur <code>1fr</code> en CSS Grid signifie :</p>
+    
+      <div class="rep">b) 1 fraction de l'espace disponible</div>
+    
+  </div>
 
-  <section class="questions">
-    <h2>Questions &amp; Réponses</h2>
-
-    <div class="qa">
-      <p class="q">1. Tous les liens dans la navigation</p>
-      <pre>.main-nav a { color: green; }</pre>
-    </div>
-
-    <div class="qa">
-      <p class="q">2. Uniquement le lien actif</p>
-      <pre>.main-nav a.active { font-weight: bold; }</pre>
-    </div>
-
-    <div class="qa">
-      <p class="q">3. L'article avec la classe featured</p>
-      <pre>article.post.featured { border: 2px solid green; }</pre>
-    </div>
-
-    <div class="qa">
-      <p class="q">4. Le premier paragraphe de chaque article</p>
-      <pre>.post p:first-of-type { color: gray; }</pre>
-    </div>
-
-    <div class="qa">
-      <p class="q">5. Les éléments li pairs</p>
-      <pre>li:nth-child(even) { background: #f0f0f0; }</pre>
-    </div>
-  </section>
-
-  <section class="questions">
-    <h2>1.2 — Spécificité (croissante)</h2>
-
-    <div class="qa">
-      <pre>p              → (0,0,1)
-.text          → (0,1,0)
-p.text         → (0,1,1)
-#main          → (1,0,0)
-#main .text p  → (1,1,1)</pre>
-    </div>
-
-    <div class="qa">
-      <p class="q">Même spécificité → laquelle gagne ?</p>
-      <p>La règle déclarée <strong>en dernier</strong> dans le CSS gagne.</p>
-    </div>
-
-    <div class="qa">
-      <p class="q">Pourquoi éviter !important ?</p>
-      <p>Il court-circuite la cascade, rend le débogage difficile et force à empiler d'autres <code>!important</code>.</p>
-    </div>
-  </section>
-
+  <!-- Q5 -->
+  <div class="quiz-item">
+    <p class="q">5. L'approche "Mobile First" utilise :</p>
+    
+      <div class="rep">b) min-width dans les media queries</div>
+    
+  </div>
 </body>
 </html>
