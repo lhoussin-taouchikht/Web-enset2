@@ -2,85 +2,84 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Ex 01 — Sélecteurs & Spécificité</title>
+  <title>Ex 03 — Flexbox</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
   <a href="../index.html" class="back">← Retour</a>
-  <h1>01 — Sélecteurs &amp; Spécificité</h1>
+  <h1>03 — Flexbox</h1>
 
-  <h2>1.1 HTML de référence</h2>
+  <h2>3.1 — Barre de navigation</h2>
 
-  <nav class="main-nav">
-    <ul>
-      <li><a href="/" class="active">Accueil</a></li>
-      <li><a href="/about">À propos</a></li>
-      <li><a href="/contact">Contact</a></li>
+  <nav class="navbar">
+    <div class="logo">MonSite</div>
+    <ul class="nav-links">
+      <li><a href="#">Accueil</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Contact</a></li>
     </ul>
   </nav>
 
-  <main>
-    <article class="post featured">
-      <h2>Premier article</h2>
+  <div class="questions" style="margin-top:16px;">
+    <div class="qa">
+      <pre>.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 24px;
+}</pre>
+    </div>
+  </div>
+
+  <h2>3.2 — Cartes de même hauteur (bouton toujours en bas)</h2>
+
+  <div class="cards">
+    <div class="card">
+      <h3>Carte 1</h3>
       <p>Contenu court.</p>
-    </article>
-    <article class="post">
-      <h2>Deuxième article</h2>
-      <p>Contenu plus long pour tester.</p>
-    </article>
-  </main>
-
-  <section class="questions">
-    <h2>Questions &amp; Réponses</h2>
-
-    <div class="qa">
-      <p class="q">1. Tous les liens dans la navigation</p>
-      <pre>.main-nav a { color: green; }</pre>
+      <a href="#" class="card-link">En savoir plus</a>
     </div>
-
-    <div class="qa">
-      <p class="q">2. Uniquement le lien actif</p>
-      <pre>.main-nav a.active { font-weight: bold; }</pre>
+    <div class="card">
+      <h3>Carte 2</h3>
+      <p>Contenu beaucoup plus long pour tester l'alignement vertical des boutons avec les autres cartes.</p>
+      <a href="#" class="card-link">En savoir plus</a>
     </div>
-
-    <div class="qa">
-      <p class="q">3. L'article avec la classe featured</p>
-      <pre>article.post.featured { border: 2px solid green; }</pre>
+    <div class="card">
+      <h3>Carte 3</h3>
+      <p>Contenu moyen.</p>
+      <a href="#" class="card-link">En savoir plus</a>
     </div>
+  </div>
 
+  <div class="questions" style="margin-top:16px;">
     <div class="qa">
-      <p class="q">4. Le premier paragraphe de chaque article</p>
-      <pre>.post p:first-of-type { color: gray; }</pre>
-    </div>
+      <pre>.cards {
+  display: flex;
+  gap: 20px;
+}
 
-    <div class="qa">
-      <p class="q">5. Les éléments li pairs</p>
-      <pre>li:nth-child(even) { background: #f0f0f0; }</pre>
-    </div>
-  </section>
+.card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
 
-  <section class="questions">
-    <h2>1.2 — Spécificité (croissante)</h2>
+.card p {
+  flex: 1; /* pousse le bouton vers le bas */
+}
 
-    <div class="qa">
-      <pre>p              → (0,0,1)
-.text          → (0,1,0)
-p.text         → (0,1,1)
-#main          → (1,0,0)
-#main .text p  → (1,1,1)</pre>
+.card-link {
+  margin-top: auto;
+}</pre>
     </div>
-
-    <div class="qa">
-      <p class="q">Même spécificité → laquelle gagne ?</p>
-      <p>La règle déclarée <strong>en dernier</strong> dans le CSS gagne.</p>
-    </div>
-
-    <div class="qa">
-      <p class="q">Pourquoi éviter !important ?</p>
-      <p>Il court-circuite la cascade, rend le débogage difficile et force à empiler d'autres <code>!important</code>.</p>
-    </div>
-  </section>
+  </div>
 
 </body>
 </html>
