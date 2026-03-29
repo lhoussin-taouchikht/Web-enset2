@@ -2,85 +2,63 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Ex 01 — Sélecteurs & Spécificité</title>
+  <title>Ex 05 — Responsive Design</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
   <a href="../index.html" class="back">← Retour</a>
-  <h1>01 — Sélecteurs &amp; Spécificité</h1>
+  <h1>05 — Responsive Design (Mobile First)</h1>
 
-  <h2>1.1 HTML de référence</h2>
+  <h2>Démo — Redimensionnez la fenêtre</h2>
 
-  <nav class="main-nav">
-    <ul>
-      <li><a href="/" class="active">Accueil</a></li>
-      <li><a href="/about">À propos</a></li>
-      <li><a href="/contact">Contact</a></li>
-    </ul>
-  </nav>
+  <div class="container">
+    <nav class="nav-menu">
+      <a href="#">Accueil</a>
+      <a href="#">Services</a>
+      <a href="#">Contact</a>
+    </nav>
+    <div class="content">
+      <div class="main-content">
+        <h3>Contenu principal</h3>
+        <p>Ce bloc prend toute la largeur sur mobile, puis partage l'espace avec la sidebar sur tablette et desktop.</p>
+      </div>
+      <aside class="sidebar">Sidebar</aside>
+    </div>
+  </div>
 
-  <main>
-    <article class="post featured">
-      <h2>Premier article</h2>
-      <p>Contenu court.</p>
-    </article>
-    <article class="post">
-      <h2>Deuxième article</h2>
-      <p>Contenu plus long pour tester.</p>
-    </article>
-  </main>
-
-  <section class="questions">
-    <h2>Questions &amp; Réponses</h2>
-
+  <div class="questions" style="margin-top:32px;">
     <div class="qa">
-      <p class="q">1. Tous les liens dans la navigation</p>
-      <pre>.main-nav a { color: green; }</pre>
+      <p class="q">Base mobile (sans media query)</p>
+      <pre>.container { width: 100%; padding: 15px; }
+
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.content { display: block; }
+.sidebar { display: none; }</pre>
     </div>
 
     <div class="qa">
-      <p class="q">2. Uniquement le lien actif</p>
-      <pre>.main-nav a.active { font-weight: bold; }</pre>
+      <p class="q">Tablette — min-width: 768px</p>
+      <pre>@media (min-width: 768px) {
+  .nav-menu { flex-direction: row; gap: 16px; }
+  .content  { display: grid; grid-template-columns: 1fr 220px; gap: 20px; }
+  .sidebar  { display: block; }
+}</pre>
     </div>
 
     <div class="qa">
-      <p class="q">3. L'article avec la classe featured</p>
-      <pre>article.post.featured { border: 2px solid green; }</pre>
+      <p class="q">Desktop — min-width: 1024px</p>
+      <pre>@media (min-width: 1024px) {
+  .container { max-width: 1200px; margin: 0 auto; }
+  .content   { grid-template-columns: 1fr 280px; }
+}</pre>
     </div>
-
-    <div class="qa">
-      <p class="q">4. Le premier paragraphe de chaque article</p>
-      <pre>.post p:first-of-type { color: gray; }</pre>
-    </div>
-
-    <div class="qa">
-      <p class="q">5. Les éléments li pairs</p>
-      <pre>li:nth-child(even) { background: #f0f0f0; }</pre>
-    </div>
-  </section>
-
-  <section class="questions">
-    <h2>1.2 — Spécificité (croissante)</h2>
-
-    <div class="qa">
-      <pre>p              → (0,0,1)
-.text          → (0,1,0)
-p.text         → (0,1,1)
-#main          → (1,0,0)
-#main .text p  → (1,1,1)</pre>
-    </div>
-
-    <div class="qa">
-      <p class="q">Même spécificité → laquelle gagne ?</p>
-      <p>La règle déclarée <strong>en dernier</strong> dans le CSS gagne.</p>
-    </div>
-
-    <div class="qa">
-      <p class="q">Pourquoi éviter !important ?</p>
-      <p>Il court-circuite la cascade, rend le débogage difficile et force à empiler d'autres <code>!important</code>.</p>
-    </div>
-  </section>
+  </div>
 
 </body>
 </html>
